@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "bobday-cli"
+version = "1.0.0"
+description = "Тестовое задание для компании bobday"
+authors = ["Maxim Kicherov <m.a.kicherov@gmail.com>"]
+readme = "README.md"
+
+packages = [
+
+    { include = "manage.py" }
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+httpx = "^0.25.0"
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.4.2"
+pytest-cov = "^4.1.0"
+pytest-asyncio = "^0.21.1"
+pytest-freezegun = "^0.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+cli = "manage:cli"
+
+[tool.flake8]
+max-line-length = 120
+
+[tool.mypy]
+ignore_missing_imports = true
+cache_dir = "/dev/null"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests"]
